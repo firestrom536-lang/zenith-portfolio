@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Zenith Visuals | Video Editor & Creator</title>
+
+    <meta name="description"
+        content="Zenith Visuals creates engaging short-form videos, cinematic edits, and social media content.">
+
+    <style>
+        /* ===== GENERAL STYLING ===== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #080808;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        .accent {
+            color: #a78bfa;
+        }
+
+        .section-title {
+            font-size: clamp(30px, 5vw, 44px);
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            color: #999;
+            margin-bottom: 40px;
+        }
+
+
+        /* ===== NAVIGATION BAR ===== */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(8, 8, 8, 0.9);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid #202020;
+        }
+
+        nav {
+            min-height: 75px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #bbb;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #a78bfa;
+        }
+
+        .nav-button {
+            padding: 10px 18px;
+            border: 1px solid #a78bfa;
+            border-radius: 8px;
+            color: white !important;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 27px;
+            cursor: pointer;
+        }
+
+
+        /* ===== HERO SECTION ===== */
+
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: #6d28d9;
+            filter: blur(180px);
+            opacity: 0.2;
+            right: 5%;
+            top: 10%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #292929;
+            padding: 8px 14px;
+            border-radius: 30px;
+            color: #ccc;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #a78bfa;
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 76px);
+            line-height: 1.1;
+            letter-spacing: -3px;
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+            color: #aaa;
+            font-size: 18px;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 22px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .button-primary {
+            background: #a78bfa;
+            color: #080808;
+        }
+
+        .button-primary:hover {
+            background: #c4b5fd;
+            transform: translateY(-3px);
+        }
+
+        .button-secondary {
+            border: 1px solid #333;
+            color: white;
+        }
+
+        .button-secondary:hover {
+            border-color: #a78bfa;
+            transform: translateY(-3px);
+        }
+
+
+        /* ===== SERVICES SECTION ===== */
+
+        section {
+            padding: 90px 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .service-card {
+            padding: 30px;
+            border: 1px solid #252525;
+            background: #101010;
+            border-radius: 14px;
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: #a78bfa;
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+
+        .service-card p {
+            color: #999;
+            font-size: 15px;
+        }
+
+
+        /* ===== PORTFOLIO SECTION ===== */
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .project {
+            overflow: hidden;
+            border: 1px solid #252525;
+            background: #101010;
+            border-radius: 14px;
+            transition: 0.3s;
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+            border-color: #a78bfa;
+        }
+
+        .project-image {
+            min-height: 240px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background:
+                radial-gradient(circle at top right, #38216c, transparent 55%),
+                linear-gradient(135deg, #171717, #090909);
+        }
+
+        .project-image span {
+            font-size: 27px;
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+
+        .project-info {
+            padding: 22px;
+        }
+
+        .project-info h3 {
+            margin-bottom: 8px;
+        }
+
+        .project-info p {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .project-tag {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 5px 10px;
+            background: #211832;
+            color: #c4b5fd;
+            font-size: 12px;
+            border-radius: 5px;
+        }
+
+
+        /* ===== ABOUT SECTION ===== */
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: #aaa;
+            margin-bottom: 18px;
+        }
+
+        .about-box {
+            padding: 35px;
+            border-radius: 16px;
+            background:
+                radial-gradient(circle at top right, #38216c, transparent 60%),
+                #101010;
+            border: 1px solid #292929;
+        }
+
+        .about-box h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .skill {
+            display: inline-block;
+            padding: 8px 12px;
+            margin: 5px 5px 5px 0;
+            border: 1px solid #333;
+            color: #ccc;
+            border-radius: 7px;
+            font-size: 13px;
+        }
+
+
+        /* ===== CONTACT SECTION ===== */
+
+        .contact-box {
+            text-align: center;
+            padding: 65px 25px;
+            border: 1px solid #292929;
+            border-radius: 18px;
+            background:
+                radial-gradient(circle at center top, #302050, transparent 70%),
+                #101010;
+        }
+
+        .contact-box h2 {
+            font-size: clamp(30px, 5vw, 48px);
+            margin-bottom: 15px;
+        }
+
+        .contact-box p {
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+
+
+        /* ===== FOOTER ===== */
+
+        footer {
+            border-top: 1px solid #222;
+            padding: 25px 0;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+
+        /* ===== MOBILE RESPONSIVENESS ===== */
+
+        @media (max-width: 768px) {
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                padding: 25px 5%;
+                background: #101010;
+                border-bottom: 1px solid #292929;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero {
+                min-height: 75vh;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .services-grid,
+            .portfolio-grid,
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                gap: 30px;
+            }
+
+            section {
+                padding: 65px 0;
+            }
+
+            .project-image {
+                min-height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== NAVIGATION ===== -->
+
+    <header>
+        <div class="container">
+            <nav>
+
+                <!-- Change your brand name here -->
+                <a href="#home" class="logo">
+                    ZENITH<span class="accent">.</span>
+                </a>
+
+                <button class="menu-toggle"
+                    id="menu-toggle"
+                    aria-label="Toggle navigation"
+                    aria-expanded="false">
+                    ☰
+                </button>
+
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li>
+                        <a href="#contact" class="nav-button">
+                            Let's Talk
+                        </a>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- ===== HERO SECTION ===== -->
+
+    <main>
+
+        <section class="hero" id="home">
+            <div class="container">
+
+                <div class="hero-content">
+
+                    <div class="status">
+                        <span class="status-dot"></span>
+                        Video Editing & Creative Content
+                    </div>
+
+                    <h1>
+                        Turning Ideas Into
+                        <span class="accent">Visual Impact.</span>
+                    </h1>
+
+                    <p>
+                        I'm the creator behind Zenith Visuals.
+                        I create engaging videos, cinematic edits,
+                        and short-form content designed to capture
+                        attention and keep viewers watching.
+                    </p>
+
+                    <div class="button-group">
+
+                        <a href="#portfolio"
+                            class="button button-primary">
+                            Explore My Work ↗
+                        </a>
+
+                        <a href="#contact"
+                            class="button button-secondary">
+                            Get In Touch
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ===== SERVICES ===== -->
+
+        <section id="services">
+            <div class="container">
+
+                <h2 class="section-title">
+                    What I <span class="accent">Do.</span>
+                </h2>
+
+                <p class="section-subtitle">
+                    Creative solutions for the digital world.
+                </p>
+
+                <div class="services-grid">
+
+                    <div class="service-card">
+                        <div class="service-icon">🎬</div>
+
+                        <h3>Short-Form Editing</h3>
+
+                        <p>
+                            Engaging YouTube Shorts, Instagram Reels,
+                            and TikTok-style videos with dynamic
+                            pacing and captions.
+                        </p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">✨</div>
+
+                        <h3>Creative Editing</h3>
+
+                        <p>
+                            Cinematic transitions, sound design,
+                            visual effects, and storytelling
+                            that make content stand out.
+                        </p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">📱</div>
+
+                        <h3>Social Media Content</h3>
+
+                        <p>
+                            Video content tailored for social
+                            platforms, with a focus on viewer
+                            engagement and clear storytelling.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ===== PORTFOLIO ===== -->
+
+        <section id="portfolio">
+            <div class="container">
+
+                <h2 class="section-title">
+                    Selected <span class="accent">Work.</span>
+                </h2>
+
+                <p class="section-subtitle">
+                    A selection of projects and editing styles.
+                </p>
+
+                <div class="portfolio-grid">
+
+                    <!-- Replace these placeholders with real projects -->
+
+                    <article class="project">
+
+                        <div class="project-image">
+                            <span>SHORT-FORM<br>CONTENT</span>
+                        </div>
+
+                        <div class="project-info">
+                            <h3>Short-Form Video</h3>
+
+                            <p>
+                                Fast-paced editing, engaging captions,
+                                and sound design for vertical videos.
+                            </p>
+
+                            <span class="project-tag">
+                                YouTube Shorts
+                            </span>
+                        </div>
+
+                    </article>
+
+
+                    <article class="project">
+
+                        <div class="project-image">
+                            <span>CINEMATIC<br>VISUALS</span>
+                        </div>
+
+                        <div class="project-info">
+                            <h3>Cinematic Editing</h3>
+
+                            <p>
+                                Creative visuals, transitions,
+                                and atmosphere-driven storytelling.
+                            </p>
+
+                            <span class="project-tag">
+                                Creative Editing
+                            </span>
+                        </div>
+
+                    </article>
+
+
+                    <article class="project">
+
+                        <div class="project-image">
+                            <span>EDUCATIONAL<br>CONTENT</span>
+                        </div>
+
+                        <div class="project-info">
+                            <h3>Educational Videos</h3>
+
+                            <p>
+                                Clear storytelling and visual
+                                pacing for educational content.
+                            </p>
+
+                            <span class="project-tag">
+                                Education
+                            </span>
+                        </div>
+
+                    </article>
+
+
+                    <article class="project">
+
+                        <div class="project-image">
+                            <span>YOUR NEXT<br>PROJECT</span>
+                        </div>
+
+                        <div class="project-info">
+                            <h3>Let's Create Something</h3>
+
+                            <p>
+                                This space is ready for your next
+                                personal or client project.
+                            </p>
+
+                            <span class="project-tag">
+                                In Progress
+                            </span>
+                        </div>
+
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ===== ABOUT ===== -->
+
+        <section id="about">
+            <div class="container">
+
+                <div class="about-content">
+
+                    <div class="about-text">
+
+                        <h2 class="section-title">
+                            Behind The
+                            <span class="accent">Visuals.</span>
+                        </h2>
+
+                        <p>
+                            I'm a video editor and digital creator
+                            interested in combining creativity,
+                            technology, and storytelling.
+                        </p>
+
+                        <p>
+                            Through Zenith Visuals, my goal is to
+                            create content that communicates ideas
+                            clearly, looks professional, and keeps
+                            audiences engaged.
+                        </p>
+
+                        <p>
+                            Every project is an opportunity to
+                            experiment, learn, and improve.
+                        </p>
+
+                    </div>
+
+                    <div class="about-box">
+
+                        <h3>My Creative Toolkit</h3>
+
+                        <p style="color: #aaa; margin-bottom: 20px;">
+                            Tools and skills I work with.
+                        </p>
+
+                        <span class="skill">Video Editing</span>
+                        <span class="skill">CapCut</span>
+                        <span class="skill">DaVinci Resolve</span>
+                        <span class="skill">After Effects</span>
+                        <span class="skill">Storytelling</span>
+                        <span class="skill">HTML</span>
+                        <span class="skill">CSS</span>
+                        <span class="skill">JavaScript</span>
+
+                        <!-- Remove tools you don't use yet -->
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ===== CONTACT ===== -->
+
+        <section id="contact">
+            <div class="container">
+
+                <div class="contact-box">
+
+                    <h2>
+                        Have a Project in
+                        <span class="accent">Mind?</span>
+                    </h2>
+
+                    <p>
+                        Let's connect and turn your idea
+                        into something worth watching.
+                    </p>
+
+                    <!-- Replace the email below with your real email -->
+
+                    <a href="mailto:yourname@example.com"
+                        class="button button-primary">
+                        Contact Me ↗
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ===== FOOTER ===== -->
+
+    <footer>
+        <div class="container">
+
+            <div class="footer-content">
+
+                <p>
+                    © <span id="year"></span> Zenith Visuals.
+                    All rights reserved.
+                </p>
+
+                <p>Designed with creativity.</p>
+
+            </div>
+
+        </div>
+    </footer>
+
+
+    <!-- ===== JAVASCRIPT ===== -->
+
+    <script>
+
+        // Automatically update the copyright year
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+
+        // Mobile navigation menu
+        const menuToggle = document.getElementById("menu-toggle");
+        const navLinks = document.getElementById("nav-links");
+
+        menuToggle.addEventListener("click", function () {
+
+            const isOpen = navLinks.classList.toggle("active");
+
+            menuToggle.setAttribute("aria-expanded", isOpen);
+
+            menuToggle.textContent = isOpen ? "✕" : "☰";
+
+        });
+
+
+        // Close the mobile menu after clicking a link
+        document.querySelectorAll(".nav-links a").forEach(function (link) {
+
+            link.addEventListener("click", function () {
+
+                navLinks.classList.remove("active");
+
+                menuToggle.setAttribute("aria-expanded", "false");
+
+                menuToggle.textContent = "☰";
+
+            });
+
+        });
+
+    </script>
+    <script src="script.js"></script>
+
+</body>
+</html>
